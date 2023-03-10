@@ -33,6 +33,26 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </NavLink>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <NavLink :href="route('departments.index')" :active="route().current('departments.index')">
+                                    Departamentos
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <NavLink :href="route('employees.index')" :active="route().current('employees.index')">
+                                    Empleados
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <NavLink :href="route('graphic')" :active="route().current('graphic')">
+                                    Grafico
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <NavLink :href="route('reports')" :active="route().current('reports')">
+                                    Reportes
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -64,9 +84,9 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
+                                        <DropdownLink :href="route('profile.edit')"> Perfil </DropdownLink>
                                         <DropdownLink :href="route('logout')" method="post" as="button">
-                                            Log Out
+                                            Salir
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>
@@ -115,6 +135,18 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('departments.index')" :active="route().current('departments.index')">
+                            Departamentos
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('employees.index')" :active="route().current('employees.index')">
+                            Empleados
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('graphic')" :active="route().current('graphic')">
+                            Graficos
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('reports')" :active="route().current('reports')">
+                            Reportes
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -127,9 +159,9 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('profile.edit')"> Perfil </ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
+                                Salir
                             </ResponsiveNavLink>
                         </div>
                     </div>

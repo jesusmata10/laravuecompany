@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 150);
+            $table->string('email', 80);
+            $table->string('phone', 15);
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('departments')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
