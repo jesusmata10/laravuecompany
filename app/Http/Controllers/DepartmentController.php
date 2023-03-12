@@ -51,6 +51,8 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
+        
+        //dd($department);
         return inertia::render('Departments/Edit', ['department' => $department]);
     }
 

@@ -16,8 +16,8 @@ class EmployeeController extends Controller
     public function index()
     {
         $departments = Department::all();
-        $employees = Employee::select('employees.id', 'employees.name', 'email', 'phone', 'department_id', 'departments.name as department')
-            ->join('departents', 'departments.id', '=', 'employees.department_id')
+        $employees = Employee::select('employees.id', 'employees.name', 'employees.email', 'employees.phone', 'employees.department_id', 'departments.name as department')
+            ->join('departments', 'departments.id', '=', 'employees.department_id')
             ->paginate(10);
 
         return Inertia::render('Employees/Index', ['departments' => $departments, 'employees' => $employees]);
@@ -38,7 +38,7 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name' => 'required|max:100',
-            'email' => 'requered',
+            'email' => 'required',
             'phone' => 'required',
             'department_id' => 'required'
         ]);
