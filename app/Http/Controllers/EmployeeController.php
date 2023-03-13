@@ -6,7 +6,8 @@ use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 
 class EmployeeController extends Controller
 {
@@ -46,7 +47,7 @@ class EmployeeController extends Controller
         $employee = new Employee($request->all());
         $employee->save();
 
-        return redirect('employee');
+        return redirect('employees');
     }
 
     /**
@@ -62,7 +63,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return  Inertia::render('employee', ['employee' => $employee]);
+        return  Inertia::render('employees', ['employee' => $employee]);
     }
 
     /**
@@ -72,14 +73,14 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name' => 'required|max:150',
-            'email' => 'requered|max:80',
+            'email' => 'required|max:80',
             'phone' => 'required|max:15',
             'department_id' => 'required|numeric'
         ]);
 
         $employee->update($request->all());
 
-        return redirect('employee');
+        return redirect('employees');
     }
 
     /**
@@ -89,13 +90,13 @@ class EmployeeController extends Controller
     {
         $employee->delete();
 
-        return redirect('employee');
+        return redirect('employees');
     }
 
     public function EmployeeByDepartment()
     {
-        $data = Employee::select(DB::raw('count(employee.id) as count, departments.name'))
-        ->join('departments', 'departments.id','=', 'employee.department_id')
+        $data = Employee::select(DB::raw('count(employees.id) as count, departments.name'))
+        ->join('departments', 'departments.id','=', 'employees.department_id')
         ->groupBy('departments.name')->get();
 
         return Inertia::render('Employees/Graphic', ['data' => $data]);

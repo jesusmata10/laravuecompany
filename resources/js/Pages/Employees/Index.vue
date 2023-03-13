@@ -59,11 +59,11 @@ const closeModal = () => {
 const save = () => {
     if (operation.value == 1) {
         form.post(route('employees.store'), {
-            onSuccess: () => { ok('Empleado Creado Sastifatoriamente') }
+            onSuccess: () => { ok('Empleado Creado') }
         });
     } else {
         form.put(route('employees.update', id.value), {
-            onSuccess: () => { ok('Empleado Actualizado Sastifatoriamente') }
+            onSuccess: () => { ok('Empleado Actualizado') }
         });
     }
 }
@@ -87,10 +87,11 @@ const deleteEmployee = (id, name) => {
         cancelButtonText: '<i class="fa-solid fa-ban"></i> Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            form.delete(route('employees.destroy', id));
-            onSuccess: () => { ok('Empleado Eliminado') }
+            form.delete(route('employees.destroy', id),{
+                onSuccess: () => { ok('Empleado Eliminado')}
+            });
         }
-    });
+    })
 }
 
 </script>
@@ -152,7 +153,7 @@ const deleteEmployee = (id, name) => {
                     <h2 class="p-3 texl-lg font.mediun text-hray-900">
                         {{ title }}
                     </h2>
-                    <div class="p-3 ">
+                    <div class="p-3 place-content-center">
                         <InputLabel for="name" value="Nombres:"></InputLabel>
                         <TextInput id="name" ref="nameInput" v-model="form.name" type="text" class="mt-1 block w-3/4"
                             placeholder="Nombres"></TextInput>
@@ -170,8 +171,8 @@ const deleteEmployee = (id, name) => {
                             placeholder="Telefono"></TextInput>
                         <InputError :message="form.errors.phone" class="mt-2"></InputError>
                     </div>
-                    <div class="p-3">
-                        <InputLabel for="department_id" value="Departamento:"></InputLabel>
+                    <div class="p-3 ">
+                        <InputLabel for="department_id" value="Departamento:" class="block"></InputLabel>
                         <SelectInput id="department_id" :options="departments" v-model="form.department_id" type="text"
                             class="mt-1 block w-3/4" placeholder="Telefono"></SelectInput>
                         <InputError :message="form.errors.department_id" class="mt-2"></InputError>
@@ -180,6 +181,11 @@ const deleteEmployee = (id, name) => {
                         <PrimaryButton class="p-3 mt-2" :disabled="form.processing" @click="save">
                             <i class="fa-solid fa-save"> Guardar</i>
                         </PrimaryButton>
+                    </div>
+                    <div class="p-3 mt-6 flex justify-end">
+                        <SecundaryButton class="ml-3" :disabled="form.processing" @click="closeModal">
+                            Cancelar
+                        </SecundaryButton>
                     </div>
 
                 </Modal>
