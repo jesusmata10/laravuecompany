@@ -107,10 +107,10 @@ class EmployeeController extends Controller
     public function reports()
     {
         $departments = Department::all();
-        $employees = Employee::select('employees.id', 'employees.name', 'email', 'phone', 'department_id', 'departments.name as department')
-        ->join('departents', 'departments.id', '=', 'employees.department_id')
+        $employees = Employee::select('employees.id', 'employees.name', 'employees.email', 'employees.phone', 'employees.department_id', 'departments.name as department')
+        ->join('departments', 'departments.id', '=', 'employees.department_id')
         ->get();
 
-        return Inertia::render('Employees/Report', ['employees' => $employees, 'departments' => $departments]);
+        return Inertia::render('Employees/Reports', ['employees' => $employees, 'departments' => $departments]);
     }
 }
